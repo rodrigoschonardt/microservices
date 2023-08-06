@@ -1,0 +1,6 @@
+com\rodrigoschonardt\inventoryservice\model\Inventory.class
+com\rodrigoschonardt\inventoryservice\model\Inventory$Status.class
+com\rodrigoschonardt\inventoryservice\repository\InventoryRepository.class
+com\rodrigoschonardt\inventoryservice\dto\InventoryStatusData.class
+com\rodrigoschonardt\inventoryservice\controller\InventoryController.class
+com\rodrigoschonardt\inventoryservice\InventoryServiceApplication.class

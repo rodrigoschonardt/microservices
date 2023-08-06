@@ -1,0 +1,10 @@
+C:\projects\services\order-service\src\main\java\com\rodrigoschonardt\orderservice\repository\OrderRepository.java
+C:\projects\services\order-service\src\main\java\com\rodrigoschonardt\orderservice\controller\OrderController.java
+C:\projects\services\order-service\src\main\java\com\rodrigoschonardt\orderservice\dto\AddOrderData.java
+C:\projects\services\order-service\src\main\java\com\rodrigoschonardt\orderservice\dto\OrderItemDetailsData.java
+C:\projects\services\order-service\src\main\java\com\rodrigoschonardt\orderservice\dto\OrderDetailsData.java
+C:\projects\services\order-service\src\main\java\com\rodrigoschonardt\orderservice\model\Order.java
+C:\projects\services\order-service\src\main\java\com\rodrigoschonardt\orderservice\service\OrderService.java
+C:\projects\services\order-service\src\main\java\com\rodrigoschonardt\orderservice\OrderServiceApplication.java
+C:\projects\services\order-service\src\main\java\com\rodrigoschonardt\orderservice\dto\AddOrderItemData.java
+C:\projects\services\order-service\src\main\java\com\rodrigoschonardt\orderservice\model\OrderItem.java

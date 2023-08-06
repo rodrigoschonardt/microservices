@@ -1,0 +1,8 @@
+com\rodrigoschonardt\productservice\dto\ProductDetailsData.class
+com\rodrigoschonardt\productservice\ProductServiceApplication.class
+com\rodrigoschonardt\productservice\repository\ProductRepository.class
+com\rodrigoschonardt\productservice\model\Product$ProductBuilder.class
+com\rodrigoschonardt\productservice\service\ProductService.class
+com\rodrigoschonardt\productservice\dto\AddProductData.class
+com\rodrigoschonardt\productservice\model\Product.class
+com\rodrigoschonardt\productservice\controller\ProductController.class

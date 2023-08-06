@@ -1,0 +1,10 @@
+com\rodrigoschonardt\orderservice\model\Order.class
+com\rodrigoschonardt\orderservice\repository\OrderRepository.class
+com\rodrigoschonardt\orderservice\controller\OrderController.class
+com\rodrigoschonardt\orderservice\dto\OrderItemDetailsData.class
+com\rodrigoschonardt\orderservice\OrderServiceApplication.class
+com\rodrigoschonardt\orderservice\dto\OrderDetailsData.class
+com\rodrigoschonardt\orderservice\model\OrderItem.class
+com\rodrigoschonardt\orderservice\dto\AddOrderData.class
+com\rodrigoschonardt\orderservice\dto\AddOrderItemData.class
+com\rodrigoschonardt\orderservice\service\OrderService.class
