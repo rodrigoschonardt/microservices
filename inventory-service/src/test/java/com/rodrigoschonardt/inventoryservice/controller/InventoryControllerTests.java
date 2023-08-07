@@ -1,7 +1,8 @@
 package com.rodrigoschonardt.inventoryservice.controller;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rodrigoschonardt.inventoryservice.dto.InventoryItemStatusData;
+import com.rodrigoschonardt.inventoryservice.dto.InventoryStatusData;
 import com.rodrigoschonardt.inventoryservice.model.InventoryItem;
 import com.rodrigoschonardt.inventoryservice.repository.InventoryRepository;
 import org.junit.jupiter.api.Assertions;
@@ -16,6 +17,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.testcontainers.containers.MySQLContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
+
+import java.util.List;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -49,63 +52,65 @@ public class InventoryControllerTests
     }
 
     @Test
-    public void shouldReturnAvailable() throws Exception
+    public void shouldReturnQuantityTen() throws Exception
     {
         InventoryItem inventoryItem = new InventoryItem();
 
         String skuCode = "test-code";
+        Integer quantity = 10;
 
         inventoryItem.setSkuCode( skuCode );
-        inventoryItem.setQuantity( 10 );
+        inventoryItem.setQuantity( quantity );
 
         repository.save( inventoryItem );
 
-        MockHttpServletResponse response = mockMvc.perform( MockMvcRequestBuilders.get( "/api/inventory-items/{sku-code}", skuCode ) )
+        MockHttpServletResponse response = mockMvc.perform( MockMvcRequestBuilders.get( "/api/inventory-items" ).param( "sku-code", skuCode ) )
                                                   .andExpect( status().isOk() )
                                                   .andReturn()
                                                   .getResponse();
 
-        InventoryItemStatusData inventoryStatusData = mapper.readValue( response.getContentAsString(), InventoryItemStatusData.class );
+        List<InventoryStatusData> inventoryStatusData = mapper.readValue( response.getContentAsString(),  new TypeReference<List<InventoryStatusData>>(){} );
 
-        Assertions.assertEquals( inventoryStatusData.status(), InventoryItem.Status.AVAILABLE );
+        Assertions.assertEquals( inventoryStatusData.get( 0 ).quantity(), quantity );
     }
 
     @Test
-    public void shouldReturnUnavailableBecauseTheRegisterIsNull() throws Exception
+    public void shouldReturnQuantityZeroBecauseTheItemIsNull() throws Exception
     {
         InventoryItem inventoryItem = new InventoryItem();
 
         String skuCode = "test-unavailable-code";
 
-        MockHttpServletResponse response = mockMvc.perform( MockMvcRequestBuilders.get( "/api/inventory-items/{sku-code}", skuCode ) )
+        MockHttpServletResponse response = mockMvc.perform( MockMvcRequestBuilders.get( "/api/inventory-items" ).param( "sku-code", skuCode ) )
                                                   .andExpect( status().isOk() )
                                                   .andReturn()
                                                   .getResponse();
 
-        InventoryItemStatusData inventoryStatusData = mapper.readValue( response.getContentAsString(), InventoryItemStatusData.class );
+        List<InventoryStatusData> inventoryStatusData = mapper.readValue( response.getContentAsString(),  new TypeReference<List<InventoryStatusData>>(){} );
 
-        Assertions.assertEquals( inventoryStatusData.status(), InventoryItem.Status.UNAVAILABLE );
+        Assertions.assertEquals( inventoryStatusData.get( 0 ).quantity(), 0 );
     }
 
     @Test
-    public void shouldReturnUnavailableBecauseTheQuantityIsZero() throws Exception
+    public void shouldReturnQuantityZero() throws Exception
     {
         InventoryItem inventoryItem = new InventoryItem();
 
         String skuCode = "test-zero-code";
+        Integer quantity = 0;
 
         inventoryItem.setSkuCode( skuCode );
-        inventoryItem.setQuantity( 0 );
+        inventoryItem.setQuantity( quantity );
 
         repository.save( inventoryItem );
 
-        MockHttpServletResponse response = mockMvc.perform( MockMvcRequestBuilders.get( "/api/inventory-items/{sku-code}", skuCode ) )
+        MockHttpServletResponse response = mockMvc.perform( MockMvcRequestBuilders.get( "/api/inventory-items" ).param( "sku-code", skuCode ) )
                                                   .andExpect( status().isOk() )
                                                   .andReturn()
                                                   .getResponse();
 
-        InventoryItemStatusData inventoryStatusData = mapper.readValue( response.getContentAsString(), InventoryItemStatusData.class );
+        List<InventoryStatusData> inventoryStatusData = mapper.readValue( response.getContentAsString(),  new TypeReference<List<InventoryStatusData>>(){} );
 
-        Assertions.assertEquals( inventoryStatusData.status(), InventoryItem.Status.UNAVAILABLE );
+        Assertions.assertEquals( inventoryStatusData.get( 0 ).quantity(), quantity );
     }
 }

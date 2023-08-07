@@ -12,8 +12,6 @@ import lombok.*;
 @AllArgsConstructor
 public class InventoryItem
 {
-    public enum Status { AVAILABLE, UNAVAILABLE }
-
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long id;
