@@ -34,7 +34,7 @@ public class OrderService
 
         List<InventoryStatusData> response = webClientBuilder.build().get()
                                  .uri( "http://inventory-service/api/inventory-items",
-                                            uriBuilder -> uriBuilder.queryParam("sku-code", codes).build() )
+                                            uriBuilder -> uriBuilder.queryParam( "sku-code", codes ).build() )
                                  .retrieve()
                                  .bodyToMono( new ParameterizedTypeReference<List<InventoryStatusData>>() {} )
                                  .block();
