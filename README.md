@@ -14,3 +14,5 @@ Technology Stack:
 * Spring Cloud Gateway
 * Netflix – Eureka
 * Spring Security
+* Resilience4j
+* Zipkin
